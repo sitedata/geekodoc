@@ -1795,11 +1795,6 @@ div {
         ## Specifies the keyword for the type of mark that should be used on this
         ##  item, instead of the mark that would be used by default
         attribute override { xsd:NMTOKEN }
-      db.listitem.attlist =
-        db.listitem.role.attribute?
-        & db.common.attributes
-        & db.common.linking.attributes
-        & db.listitem.override.attribute?
       db.listitem =
 
         ## A wrapper for the elements of a list item
@@ -10905,4 +10900,11 @@ div {
     & db.xi.set-xml-id.attribute?
     & db.any.other.attribute*
     & db.xi.trans.attlist?
+  db.listitem.attlist =
+    db.listitem.role.attribute?
+    & # db.common.attributes without
+      #  db.xml.id.attribute? and db.common.linking.attributes
+      db.common.base.attributes
+    & db.annotations.attribute?
+    & db.listitem.override.attribute?
 }

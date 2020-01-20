@@ -1718,6 +1718,14 @@ include "docbookxi.rnc"
     db.any.other.attribute* &
     db.xi.trans.attlist?
 
+  db.listitem.attlist =
+    db.listitem.role.attribute?
+    # db.common.attributes without
+    #  db.xml.id.attribute? and db.common.linking.attributes
+    & db.common.base.attributes
+    & db.annotations.attribute?
+    & db.listitem.override.attribute?
+
 } # end of include
 
 
