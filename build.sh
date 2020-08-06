@@ -115,7 +115,7 @@ source /etc/os-release || exit_on_error "File /etc/os-release not found"
 
 function usage {
     cat << EOF
-Build Geekodoc
+Build Geekodoc Schema
 
 SYNOPSIS
   $ME -h|--help
