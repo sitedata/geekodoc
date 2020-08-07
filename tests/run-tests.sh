@@ -17,15 +17,15 @@ PROG=${0##*/}
 PROGDIR=${0%/*}
 
 # Needed to be able to run it from different directories
-GEEKODOC_V1=${PROGDIR}/../build/geekodoc/rng/5.1_1/geekodoc-v1-flat.rng
-GEEKODOC_V1=$(readlink -f ${GEEKODOC_V1})
-GEEKODOC_V2=${PROGDIR}/../build/geekodoc/rng/5.1_2/geekodoc-v2-flat.rng
-GEEKODOC_V2=$(readlink -f ${GEEKODOC_V2})
+GEEKODOC_V1="${PROGDIR}/../build/geekodoc/rng/5.1_1/geekodoc-v1-flat.rng"
+GEEKODOC_V1=$(readlink -f "${GEEKODOC_V1}")
+GEEKODOC_V2="${PROGDIR}/../build/geekodoc/rng/5.1_2/geekodoc-v2-flat.rng"
+GEEKODOC_V2=$(readlink -f "${GEEKODOC_V2}")
 
 # SCHEMA=${PROGDIR}/../rng/geekodoc5-flat.rng
 # SCHEMA=$(readlink -f ${SCHEMA})
 ERRORS=0
-ERRORFILE=${PROGDIR}/last-test-run-errors
+ERRORFILE="${PROGDIR}/last-test-run-errors"
 
 # Which versions of Geekodoc should be tested?
 # valid: 1, 2, both
@@ -97,28 +97,28 @@ EOF_helptext
 
 function test_check()
 {
-    local TEST=$1
-    local RESULT=$2
+    local TEST="$1"
+    local RESULT="$2"
     local RESULTSTR=
 
     RESULTSTR="\e[1;32mPASSED\e[0m"
-    case "$1" in
+    case "$TEST" in
         good)
             if [[ ! "$RESULT" == '' ]]; then
                 RESULTSTR="\e[1;31mFAILED\e[0m"
-                ERRORS=$(($ERRORS + 1))
+                ERRORS=$((ERRORS + 1))
             fi
             ;;
         bad)
             if [[ "$RESULT" == '' ]]; then
                 RESULTSTR="\e[1;31mFAILED\e[0m"
-                ERRORS=$(($ERRORS + 1))
+                ERRORS=$((ERRORS + 1))
             fi
             ;;
         *)
             ;;
     esac
-    echo -e $RESULTSTR
+    echo -e "$RESULTSTR"
 }
 
 function test_files() {
@@ -127,18 +127,16 @@ function test_files() {
     local SCHEMA=${3:?GeekoDoc schema not set}
     local GOOD_OR_BAD=${DIR##*/}
     local result
-    local resultstr
-    local re='^[0-9]+$'
 
     # Skip, if directory is empty
-    if ! find $DIR/ -mindepth 1 -name \*.xml | read; then
+    if ! find "$DIR" -mindepth 1 -name \*.xml | read; then
        logwarn "No XML files found in $DIR, skipping"
        return
     fi
 
     for xmlfile in $DIR/*.xml; do
        loginfo -n "Validating '$xmlfile'... "
-       wellformedness=$(xmllint --noout --noent $xmlfile 2>&1)
+       wellformedness=$(xmllint --noout --noent "$xmlfile" 2>&1)
        if [[ ! $wellformedness == '' ]]; then
            # In this case, we always want to say "FAILED", so this usage is correct.
            # (But we are abusing the existing test_check() function somewhat.)
@@ -146,12 +144,12 @@ function test_files() {
            echo -e "$wellformedness"
            logerror --fatal "Test case is not well-formed: '$xmlfile'. Quitting."
        fi
-       result=$(validator $SCHEMA $xmlfile)
-       test_check $GOOD_OR_BAD "$result"
+       result=$(validator "$SCHEMA" "$xmlfile")
+       test_check "$GOOD_OR_BAD" "$result"
        if [[ ! "$result" == '' ]]; then
            [[ $GOOD_OR_BAD == 'good' ]] && echo -e "$result"
-           echo "###### Errors in '$xmlfile' ######" >> $ERRORFILE
-           echo -e "\n$result\n\n" >> $ERRORFILE
+           echo "###### Errors in '$xmlfile' ######" >> "$ERRORFILE"
+           echo -e "\n$result\n\n" >> "$ERRORFILE"
        fi
     done
 }
@@ -163,9 +161,9 @@ function validate_against()
     local ver="$2"
     local geekodoc_ver="$3"
     loginfo "### $msg $ver"
-    test_files $PROGDIR/$ver/good test_check_good $geekodoc_ver
+    test_files "$PROGDIR/$ver/good" test_check_good "$geekodoc_ver"
     echo "----------------------------------"
-    test_files $PROGDIR/$ver/bad test_check_bad $geekodoc_ver
+    test_files "$PROGDIR/$ver/bad" test_check_bad "$geekodoc_ver"
 }
 
 
