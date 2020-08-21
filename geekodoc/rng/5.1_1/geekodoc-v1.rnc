@@ -1,11 +1,11 @@
 #
-# GeekoDoc5 Schema
+# GeekoDoc Schema version 1
 #
 # See http://docbook.org/docs/howto
 #
 # This schema is a customization of DocBook for SUSE documents
 #
-# Author: Thomas Schraitle, 2015-2018
+# Author: Thomas Schraitle, 2015-2020
 #
 default namespace db = "http://docbook.org/ns/docbook"
 datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
