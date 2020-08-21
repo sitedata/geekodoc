@@ -55,6 +55,7 @@ declare -A LOGCOLORS=([DEBUG]=$CYAN [INFO]=$BOLD [WARN]=$YELLOW [ERROR]=$RED)
 # -- Paths
 DOCBOOKXI_URI="http://www.oasis-open.org/docbook/xml/5.1/rng/docbookxi.rnc"
 DOCBOOKXI_RNC_PATH="/usr/share/xml/docbook/schema/rng/5.1/docbookxi.rnc"
+DBITS_RNC_PATH="/usr/share/xml/docbook/schema/rng/5.1/dbits.rnc"
 GEEKODOC_DIR="geekodoc"
 GEEKODOC_RNG_DIR=${GEEKODOC_DIR}/rng
 GEEKODOC1_PATH=${GEEKODOC_RNG_DIR}/5.1_1
@@ -197,9 +198,13 @@ function create_build_env {
 
     cp $GEEKODOC1_PATH/*.rnc $BUILD_DIR/$GEEKODOC1_PATH
     cp $GEEKODOC2_PATH/*.rnc $BUILD_DIR/$GEEKODOC2_PATH
-    # Copy DocBook5 schema:
+    # Copy DocBook5 schema for GeekoDoc v1
     cp $DOCBOOKXI_RNC_PATH $BUILD_DIR/$GEEKODOC1_PATH
+
+    # Copy DocBook5 schema and ITS for GeekoDoc v2
     cp $DOCBOOKXI_RNC_PATH $BUILD_DIR/$GEEKODOC2_PATH
+    cp $DBITS_RNC_PATH $BUILD_DIR/$GEEKODOC2_PATH
+
     logdebug "Build environment created."
 }
 
