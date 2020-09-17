@@ -14,7 +14,7 @@ datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
 namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 namespace html = "http://www.w3.org/1999/xhtml"
-namespace its = "http://www.w3.org/2005/11/its"
+# namespace its = "http://www.w3.org/2005/11/its"
 namespace mml = "http://www.w3.org/1998/Math/MathML"
 namespace svg = "http://www.w3.org/2000/svg"
 namespace s = "http://purl.oclc.org/dsdl/schematron"
@@ -39,7 +39,7 @@ suse.schema.version = "5.1-subset GeekoDoc-1.1.0"
 #
 include "transclusion.rnc"
 #
-include "its.rnc"
+# include "its.rnc"
 
 # XInclude 1.1
 div
@@ -1126,7 +1126,7 @@ include "docbookxi.rnc"
       & db.dir.attribute?
       & db.effectivity.attributes
       & db.rdfalite.attributes
-      & its-attribute.translate?
+      # & its-attribute.translate?
 
   db.common.data.attributes =
    ## Specifies the format of the data
@@ -1720,7 +1720,7 @@ include "docbookxi.rnc"
   # see https://www.w3.org/TR/xinclude-11/
   #
   db.any.other.attribute = attribute *
-                           - (locattr:* | trans:* | local:* | xlink:* | xml:* | its:*)
+                           - (locattr:* | trans:* | local:* | xlink:* | xml:* )
                            { text }
   db.xi.include.attlist =
     db.xi.href.attribute? &
