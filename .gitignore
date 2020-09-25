@@ -9,6 +9,7 @@ geekodoc/rng/geekodoc5*.rng
 geekodoc/rng/5.1_?/docbookxi.rn[cg]
 geekodoc/rng/5.1_?/transclusion.rng
 geekodoc/rng/5.1_?/its.rng
+geekodoc/rng/5.1_?/geekodoc*.rng
 
 tests/*/*.err
 tests/last-test-run-errors
