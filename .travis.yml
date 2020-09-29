@@ -25,4 +25,4 @@ install:
 # commands to run tests
 script:
     - ./build.sh -vvv
-    # - ./geekodoc/tests/run-tests.sh -V jing
+    - ./tests/run-tests.sh -V jing
