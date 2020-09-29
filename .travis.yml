@@ -20,7 +20,8 @@ install:
   - pip install rnginline
   # Workaround to download DocBook 5.1 schema directly
   - sudo mkdir -p /usr/share/xml/docbook/schema/rng/5.1/
-  - sudo wget -P /usr/share/xml/docbook/schema/rng/5.1/ http://docs.oasis-open.org/docbook/docbook/v5.1/cos01/schemas/rng/docbookxi.rnc http://docs.oasis-open.org/docbook/docbook/v5.1/cos01/schemas/rng/docbookxi.rng
+  - sudo wget -P /usr/share/xml/docbook/schema/rng/5.1/ http://docs.oasis-open.org/docbook/docbook/v5.1/cos01/schemas/rng/docbookxi.rnc http://docs.oasis-open.org/docbook/docbook/v5.1/cos01/schemas/rng/docbookxi.rng http://docs.oasis-open.org/docbook/docbook/v5.1/cos01/schemas/rng/dbits.rnc http://docs.oasis-open.org/docbook/docbook/v5.1/cos01/schemas/rng/dbits.rng
+
 
 # commands to run tests
 script:
