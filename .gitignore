@@ -1,10 +1,9 @@
 # Ignore DocBook5 schema
 
 geekodoc/rng/docbookxi.rn[cg]
-geekodoc/rng/its.rng
+geekodoc/rng/*.rng
 geekodoc/rng/*.srng
 geekodoc/rng/catalog.dtd
-geekodoc/rng/geekodoc5*.rng
 #
 geekodoc/rng/5.1_?/docbookxi.rn[cg]
 geekodoc/rng/5.1_?/transclusion.rng
