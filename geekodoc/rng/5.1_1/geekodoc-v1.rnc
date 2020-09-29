@@ -39,7 +39,7 @@ suse.schema.version = "5.1-subset GeekoDoc-1.1.0"
 #
 include "transclusion.rnc"
 #
-# include "its.rnc"
+include "its.rnc"
 
 # XInclude 1.1
 div
@@ -1126,7 +1126,7 @@ include "docbookxi.rnc"
       & db.dir.attribute?
       & db.effectivity.attributes
       & db.rdfalite.attributes
-      # & its-attribute.translate?
+      & its-attribute.translate?
 
   db.common.data.attributes =
    ## Specifies the format of the data
