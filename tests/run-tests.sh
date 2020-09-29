@@ -178,7 +178,6 @@ function validate_against_v2()
     validate_against "Testing GeekoDoc" "v2" "$GEEKODOC_V2"
 }
 
-
 # -----
 #
 ARGS=$(getopt -o g:,h,V: -l geekodoc:,help,validator: -n "$PROG" -- "$@")
@@ -213,6 +212,7 @@ while true ; do
                 exit 1
                 ;;
             esac
+            shift 2
             ;;
         --)
             shift
@@ -220,6 +220,7 @@ while true ; do
             ;;
     esac
 done
+
 
 if [[ ! -e $GEEKODOC_V1 ]]; then
     logerror --fatal "No flat GeekoDoc v1 schema available. Use the build.sh script."
